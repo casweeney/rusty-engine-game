@@ -21,15 +21,21 @@ impl Default for GameState {
 fn main() {
     let mut game = Game::new();
 
-    // setup game here
+    let player = game.add_sprite("player", SpritePreset::RacingCarBlue);
+    player.translation = Vec2::new(0.0, 0.0);
+    player.rotation = SOUTH_WEST;
+    player.scale = 1.0;
+    player.layer = 1.0;
+
+    let temporary = game.add_sprite("temporary", SpritePreset::RacingCarRed);
+    temporary.translation = Vec2::new(30.0, 0.0);
+    temporary.layer = 999.0;
 
     game.add_logic(game_logic);
     game.run(GameState::default());
 }
 
 fn game_logic(engine: &mut Engine, game_state: &mut GameState) {
-    // your actual game logic goes here
-
-    game_state.current_score += 1;
-    println!("Current score: {}", game_state.current_score);
+    // game_state.current_score += 1;
+    // println!("Current score: {}", game_state.current_score);
 }
